@@ -1,0 +1,12 @@
+{
+  "name": "tripinfo-back",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "git@github.com:vignesh-sankaran/tripinfo-back.git",
+  "author": "Vignesh Sankaran <developer@sankaran.io>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
