@@ -14,7 +14,6 @@ app.get("/routesForStop", (req, res, next) => {
     return;
   }
 
-  let stopRoutes = [];
 
   // Hit PTV for departures, collect ids
   ptvClient
@@ -25,21 +24,26 @@ app.get("/routesForStop", (req, res, next) => {
       });
     })
     .then(ptvRes => {
+      let stopRoutes = [];
       try {
         ptvRes.body.departures.forEach(departure => {
           stopRoutes.push(departure.direction_id);
         });
-      } catch (e) {
-        res.send(403);
+      } catch (err) {
+        return next(err);
       }
+
+      const uniqueStopRoutesSet = new Set(stopRoutes);
+      const uniqueStopRoutes = Array.from(uniqueStopRoutesSet);
 
       // Hit PTV for route names, match against route ids
 
+      return res.send(uniqueStopRoutes);
+
       // Create JSON structure
     })
-    .catch(_ => {
-      res.sendStatus(403);
-      return;
+    .catch(err => {
+      return next(err);
     });
 });
 
