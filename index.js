@@ -14,6 +14,8 @@ app.get("/routesForStop", (req, res, next) => {
     return;
   }
 
+  let stopRoutes = [];
+
   // Hit PTV for departures, collect ids
   ptvClient
     .then(apis => {
@@ -23,30 +25,22 @@ app.get("/routesForStop", (req, res, next) => {
       });
     })
     .then(ptvRes => {
-      var stopRoutes = [];
-
       try {
         ptvRes.body.departures.forEach(departure => {
           stopRoutes.push(departure.direction_id);
         });
-
-        res.send(stopRoutes);
-        return;
       } catch (e) {
         res.send(403);
       }
 
-      res.send(stopRoutes);
-      return;
+      // Hit PTV for route names, match against route ids
+
+      // Create JSON structure
     })
     .catch(_ => {
       res.sendStatus(403);
       return;
     });
-
-  // Hit PTV for route names, match against route ids
-  // Create JSON structure
-  // Return JSON
 });
 
 app.listen(3000, () => console.log("Listening on port 3000!"));
