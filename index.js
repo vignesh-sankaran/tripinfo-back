@@ -23,7 +23,20 @@ app.get("/routesForStop", (req, res, next) => {
       });
     })
     .then(ptvRes => {
-      res.send(ptvRes.body);
+      var stopRoutes = [];
+
+      try {
+        ptvRes.body.departures.forEach(departure => {
+          stopRoutes.push(departure.direction_id);
+        });
+
+        res.send(stopRoutes);
+        return;
+      } catch (e) {
+        res.send(403);
+      }
+
+      res.send(stopRoutes);
       return;
     })
     .catch(_ => {
