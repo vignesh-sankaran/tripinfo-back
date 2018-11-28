@@ -5,8 +5,12 @@
   "repository": "git@github.com:vignesh-sankaran/tripinfo-back.git",
   "author": "Vignesh Sankaran <developer@sankaran.io>",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
   "private": true,
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "ptv-api": "^0.1.0"
   }
 }
