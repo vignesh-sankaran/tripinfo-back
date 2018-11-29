@@ -6,10 +6,12 @@
   "author": "Vignesh Sankaran <developer@sankaran.io>",
   "license": "MIT",
   "scripts": {
+    "debug": "node --inspect index.js",
     "start": "node index.js"
   },
   "private": true,
   "dependencies": {
+    "async": "^2.6.1",
     "express": "^4.16.4",
     "ptv-api": "^0.1.0"
   }
