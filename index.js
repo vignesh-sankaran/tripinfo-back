@@ -44,9 +44,14 @@ app.get("/routesForStop", (req, res, next) => {
 
         // Flatten array of arrays into a 2d array
         const directionsData = [].concat.apply([], directionsRes);
-        const uniqueDirections = new Set(directionsData);
-        const directions = Array.from(uniqueDirections);
-
+        const directions = directionsData.filter((x, i, self) => 
+          // Item is a duplicate if findIndex returns a different index
+          // to the current item index
+          // Retrieved from https://stackoverflow.com/a/36744732/5891072
+          self.findIndex(item => 
+           item.direction_id === x.direction_id 
+          ) === i
+       );
         res.send(directions);
       });
     })
@@ -61,7 +66,13 @@ function getDirections(routeId, callback) {
       return apis.Directions.Directions_ForRoute({ route_id: routeId });
     })
     .then(res => {
-      return callback(undefined, res.body.directions);
+      const directions = res.body.directions.map(x => {
+        return {
+          direction_id: x.direction_id,
+          direction_name: x.direction_name
+        }
+      })
+      return callback(undefined, directions);
     })
     .catch(err => {
       return callback(err);
