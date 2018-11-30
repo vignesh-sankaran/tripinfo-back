@@ -6,11 +6,13 @@ const async = require('async');
 
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 const devId = "1000649";
 const apiKey = "47235180-b369-11e5-a65e-029db85e733b";
 const ptvClient = ptv(devId, apiKey);
 
-app.get("/routesForStop", (req, res, next) => {
+app.get("/", (req, res, next) => {
   if (!req.query.hasOwnProperty("stop_id")) {
     return res.sendStatus(404);
   }
@@ -79,4 +81,4 @@ function getDirections(routeId, callback) {
     });
 }
 
-app.listen(3000, () => console.log("Listening on port 3000!"));
+app.listen(port, () => console.log(`Listening on port ${port}`));
