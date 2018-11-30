@@ -12,7 +12,7 @@ const devId = "1000649";
 const apiKey = "47235180-b369-11e5-a65e-029db85e733b";
 const ptvClient = ptv(devId, apiKey);
 
-app.get("/", (req, res, next) => {
+app.get("*", (req, res, next) => {
   if (!req.query.hasOwnProperty("stop_id")) {
     return res.sendStatus(404);
   }

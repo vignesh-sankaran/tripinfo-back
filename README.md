@@ -16,12 +16,13 @@ request complexity to a separate backend service.
 
 ## Deployment
 
-The backend is hosted on using Now at
+The backend is hosted on Now at
 [https://tripinfo-back-5f2z2veo1.now.sh/](https://tripinfo-back-5f2z2veo1.now.sh/).
-The endpoint requires a `stop_id` query string parameter.
+There is one endpiont at `station_directions`, with a mandatory query string
+parameter for `stop_id`.
 
 An example request using the stop id for Caulfield Railway Station is below:
 
 ```
-https://tripinfo-back-5f2z2veo1.now.sh/?stop_id=1036
+https://tripinfo-back-oy53jahsn.now.sh/station_directions?stop_id=1036
 ```

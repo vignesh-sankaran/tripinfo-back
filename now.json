@@ -2,6 +2,6 @@
     "version": 2,
     "name": "tripinfo-back",
     "builds": [
-        { "src": "index.js", "use": "@now/node-server" }
+        { "src": "*/index.js", "use": "@now/node-server" }
     ]
 }

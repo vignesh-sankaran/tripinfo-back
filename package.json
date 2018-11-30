@@ -6,8 +6,8 @@
   "author": "Vignesh Sankaran <developer@sankaran.io>",
   "license": "MIT",
   "scripts": {
-    "debug": "node --inspect index.js",
-    "start": "node index.js"
+    "debug": "node --inspect station_directions/index.js",
+    "start": "node station_directions/index.js"
   },
   "private": true,
   "dependencies": {
